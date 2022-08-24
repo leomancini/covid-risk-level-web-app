@@ -1,0 +1,46 @@
+@mobile: ~"only screen and (max-width: 667px)";
+@desktop: ~"only screen and (min-width: 668px)";
+
+* {
+	-webkit-font-smoothing: antialiased;
+}
+
+::selection {
+	
+}
+
+body {
+	background: black;
+
+	@media @mobile {
+		
+	}
+	
+	@media @desktop {
+	
+	}
+
+	#container {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		text-shadow: 0 0 20px rgb(0 0 0 / 20%);
+
+		h1, h2, h3 {
+		    font-family: system-ui;
+		    text-align: center;
+		    color: white;
+		}
+
+		h2 {
+			opacity: 0.8;
+		}
+
+		h3 {
+			opacity: 0.6;
+			font-weight: normal;
+		}
+	}
+}
