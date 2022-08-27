@@ -11,7 +11,7 @@ async function userLocationSucceeded(position) {
 
    let backgroundColor;
    
-   switch(parseInt(riskLevelForUserLocation.CCL_community_burden_level_integer)) {
+   switch(riskLevelForUserLocation.riskLevelInteger) {
       case 0:
          backgroundColor = '#00F035';
       break;
@@ -27,12 +27,12 @@ async function userLocationSucceeded(position) {
 
    document.querySelector('body').style.backgroundColor = backgroundColor;
 
-   document.querySelector('h1').innerText = riskLevelForUserLocation.County;
-   document.querySelector('h2').innerText = riskLevelForUserLocation.State_name;
+   document.querySelector('h1').innerText = riskLevelForUserLocation.countyName;
+   document.querySelector('h2').innerText = riskLevelForUserLocation.stateName;
 
-   let lastUpdatedDate = parseDate(riskLevelForUserLocation.CCL_report_date);
+   let lastUpdatedTimestamp = parseDate(riskLevelForUserLocation.lastUpdatedTimestamp);
 
-   document.querySelector('h3').innerText = `Last updated ${lastUpdatedDate.toLocaleDateString('en-us', { weekday:'long', year:'numeric', month:'short', day:'numeric' })}`;
+   document.querySelector('h3').innerText = `Last updated ${lastUpdatedTimestamp.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`;
 }
 
 function userLocationFailed() {
@@ -40,7 +40,7 @@ function userLocationFailed() {
 }
 
 function parseDate(input) {
-   let parts = input.split('-');
+   let parts = input.split('T')[0].split('-');
 
    return new Date(parts[0], parts[1]-1, parts[2]); // Note: months are 0-based
 }
